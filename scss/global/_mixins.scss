@@ -1,0 +1,27 @@
+@mixin banner-gradient-radial($radius) {
+  background: -webkit-radial-gradient(circle, $gn-banner-radial-gradient-color-start $radius, $gn-banner-radial-gradient-color-end); /* Safari 5.1 to 6.0 */
+  background: radial-gradient(circle, $gn-banner-radial-gradient-color-start $radius, $gn-banner-radial-gradient-color-end); /* Standard syntax */
+  background-size: 100% 200%;
+}
+
+@mixin banner-gradient-linear() {
+  background: -webkit-linear-gradient($gn-banner-radial-gradient-color-end, $gn-banner-radial-gradient-color-start, $gn-banner-radial-gradient-color-end); /* Safari 5.1 to 6.0 */
+  background: linear-gradient($gn-banner-radial-gradient-color-end, $gn-banner-radial-gradient-color-start, $gn-banner-radial-gradient-color-end); /* Standard syntax */
+} 
+
+@mixin gradient-straight-linear($start, $end) {
+  background: -webkit-linear-gradient($start, $end); /* Safari 5.1 to 6.0 */
+  background: linear-gradient($start, $end); /* Standard syntax */
+}
+
+@mixin retina {
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}

@@ -1,0 +1,30 @@
+.page.page-login{
+  form{
+    .item-assertive{
+      text-align: center;
+    }
+  }
+  .descriptions{
+    padding: 15px;
+    p{
+      margin: 0px;
+      padding: 5px 0px 0px 0px;
+      &.bottom-bordered{
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+        padding-left: 12px;
+        margin-bottom: 5px;
+        position: relative;
+        .fa{
+          position: absolute;
+          left: 0px;
+          top: 7px;
+          font-size: 1.1em;
+        }
+      }
+      &.small{
+        font-size: 0.9em;
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<ion-view title="Login">
+  <ion-content class="page page-login">
+    <form name="loginForm">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Enter E-mail</span>
+          <input type="email" ng-model="loginData.Email" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="loginData.Password" required>
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" 
+                  ng-click="doLogin()"
+                  ng-disabled="loginForm.$invalid || isLogingin">{{isLogingin ? 'Loging in...': 'Log in'}}</button>
+        </label>
+        <label class="item item-assertive" ng-show="isInvalidLogin">
+          Incorrect email address or password
+        </label>
+      </div>
+    </form>
+    <div class="descriptions">
+      <p class="bottom-bordered small">
+        <i class="fa fa-lock"></i> This website is certificated & protected by SSL security
+      </p>
+      <p><a href="#">Can't access your account?</a></p>
+      <p>Not Registered? <a href="#">Click here</a></p>
+    </div>
+  </ion-content>
+</ion-view>

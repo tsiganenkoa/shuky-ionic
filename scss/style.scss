@@ -1,0 +1,31 @@
+@import "global/loader";
+@import "global/fonts";
+@import "global/variables";
+@import "global/mixins";
+@import "global/icons";
+
+
+body{
+  color: $my-app-textcolor;
+  a{
+    text-decoration: none;
+    color: $my-app-textcolor;
+  }
+}
+
+.clear{
+  clear: both;
+}
+
+ng-form {
+  display: block;
+}
+
+.page{
+  background-color: $my-app-backcolor;
+}
+
+@import "partials/navbar";
+@import "partials/sidemenu";
+@import "partials/login";
+@import "partials/clients";
