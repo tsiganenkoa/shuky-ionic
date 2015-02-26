@@ -14,7 +14,7 @@ angular.module('myApp')
         views: {
           'menuContent': {
             templateUrl: 'templates/dashboard.html',
-            //controller: 'DashboardCtrl'
+            controller: 'DashboardCtrl'
           }
         }
       })

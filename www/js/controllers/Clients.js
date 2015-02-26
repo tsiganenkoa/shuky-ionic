@@ -1,38 +1,59 @@
 angular.module('myApp.controllers')
 
-        .controller('ClientsCtrl', function($scope, $http, AppConfig, Utils, $filter) {
+        .controller('ClientsCtrl', function($scope, $http, AppConfig, Utils, $ionicScrollDelegate) {
           $scope.clients = [];
           $scope.searchword = '';
           $scope.letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#'.split('');
           $scope.dividers = [];
           $scope.dividedClients = [];
-          
-          $(document).on('search', '#clientsSearchForm', function(){
-            $scope.divideClients();
+          $scope.isMoreClients = false;
+
+          $scope.options = {
+            FreeText: '', Skip: 0, Top: 20, OrderBy: 'OrganizationName'
+          };
+
+          $(document).on('search', '#clientsSearchForm', function() {
+            $scope.options.Skip = 0;
+            $scope.isMoreClients = false;
+            $scope.loadClients();
           });
 
-          $scope.loadClients = function(searchword) {
-            Utils.showIndicator();
-            $http.get(AppConfig.endpoint + 'clients', {freeText: searchword})
+          $scope.loadClients = function() {
+            if ($scope.options.Skip === 0) {
+              Utils.showIndicator();
+              $ionicScrollDelegate.scrollTop(true);
+            }
+            $http.get(AppConfig.endpoint + 'clients?' + $.param($scope.options))
                     .then(function(response) {
-                      //.log(response.data);
-                      $scope.clients = response.data;
+                      var clients = response.data;
+                      if ($scope.options.Skip === 0) {
+                        $scope.clients = clients;
+                      } else {
+                        $scope.clients = $scope.clients.concat(clients);
+                      }
+                      $scope.isMoreClients = clients.length >= $scope.options.Top;
+                      $scope.$broadcast('scroll.infiniteScrollComplete');
                       $scope.divideClients();
                       Utils.hideIndicator();
                     });
           };
 
+          $scope.loadMoreClients = function() {
+            $scope.options.Skip += $scope.options.Top;
+            $scope.loadClients();
+          };
+
           $scope.divideClients = function() {
-            var clients = $filter('clientsSearch')($scope.clients, $scope.searchword);
+            var clients = $scope.clients;
             clients = _.sortBy(clients, function(c) {
-              return c.OrganizationName || c.Email;
+              return c.OrganizationName;
             });
             var tmp = {};
             $scope.dividers = [];
             var re = /[a-zA-Z]/;
             var dividers = [];
             _.each(clients, function(c) {
-              var letter = (c.OrganizationName || c.Email).charAt(0).toUpperCase();
+              var letter = (c.OrganizationName || '').charAt(0).toUpperCase();
               if (!re.test(letter)) {
                 letter = '#';
               }
@@ -45,11 +66,18 @@ angular.module('myApp.controllers')
             $scope.dividedClients = tmp;
             return tmp;
           };
-          
-          $scope.clearSearch = function(){
-            $scope.searchword = '';
-            $scope.divideClients();
-            //$scope.loadClients($scope.searchword);
+
+          $scope.refresh = function() {
+            $scope.options.Skip = 0;
+            $scope.isMoreClients = false;
+            $scope.loadClients();
+          };
+
+          $scope.clearSearch = function() {
+            $scope.options.FreeText = '';
+            $scope.options.Skip = 0;
+            $scope.isMoreClients = false;
+            $scope.loadClients();
           };
 
           $scope.loadClients();
