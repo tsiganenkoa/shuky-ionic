@@ -16,7 +16,7 @@ angular.module('myApp.controllers')
             $scope.isMoreClients = false;
             $scope.loadClients();
           });
-
+          // Load Clients with search prefix and scroll loading index
           $scope.loadClients = function () {
             if ($scope.options.Skip === 0) {
               Utils.showIndicator();
@@ -36,12 +36,12 @@ angular.module('myApp.controllers')
                       Utils.hideIndicator();
                     });
           };
-
+          // Set skip value when down scrolling and load new datas with this value
           $scope.loadMoreClients = function () {
             $scope.options.Skip += $scope.options.Top;
             $scope.loadClients();
           };
-
+          // Add dividers to group with first prefix.
           $scope.divideClients = function () {
             var clients = $scope.clients;
             clients = _.sortBy(clients, function (c) {
@@ -65,7 +65,7 @@ angular.module('myApp.controllers')
             $scope.dividedClients = tmp;
             return tmp;
           };
-          
+
           $scope.add = function () {
             $state.go('app.edit-client');
           };
@@ -84,21 +84,23 @@ angular.module('myApp.controllers')
           };
 
           $scope.edit = function (id) {
-            $state.go('app.edit-client', {'selectedClientId': id}, {cache: false});
+            $state.go('app.edit-client', {'id': id}, {cache: false});
           };
-
+          //Swipe delete 
           $scope.delete = function (id) {
-            alert(id);
-            Utils.showIndicator();
-            $http.delete(AppConfig.endpoint + 'clients/' + id).then(function (response) {
-              console.log(response);
-              if (response.status === 200) {
-                $scope.refresh();
-              } else {
-                alert('Data deleting failed.');
-              }
-              Utils.hideIndicator();
+            Utils.confirm('Are you sure to delete this data.', 'Delete data', function () {
+              Utils.showIndicator();
+              $http.delete(AppConfig.endpoint + 'clients/' + id).then(function (response) {
+                console.log(response);
+                if (response.status === 200) {
+                  $scope.refresh();
+                } else {
+                  alert('Data deleting failed.');
+                }
+                Utils.hideIndicator();
+              });
             });
+
           };
 
           $scope.loadClients();

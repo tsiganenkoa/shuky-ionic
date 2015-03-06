@@ -28,7 +28,7 @@ angular.module('myApp')
         }
       })
       .state('app.edit-client', {
-        url: '/edit-client:selectedClientId',
+        url: '/edit-client:id',
         views: {
           'menuContent': {
             templateUrl: 'templates/edit-client.html',
@@ -54,7 +54,7 @@ angular.module('myApp')
         }
       })
       .state('app.edit-invoice', {
-        url: '/edit-invoice:selectedInvoiceId',
+        url: '/edit-invoice:id',
         views: {
           'menuContent': {
             templateUrl: 'templates/edit-invoice-estimate.html',
@@ -72,7 +72,7 @@ angular.module('myApp')
         }
       })
       .state('app.edit-estimates', {
-        url: '/edit-estimates:selectedInvoiceId',
+        url: '/edit-estimates:id',
         views: {
           'menuContent': {
             templateUrl: 'templates/edit-invoice-estimate.html',

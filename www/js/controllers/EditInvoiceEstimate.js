@@ -6,7 +6,7 @@ angular.module('myApp.controllers')
           $scope.clients = [];
           $scope.lineitem = {};
           $scope.docItemList = [];
-          $scope.isCreatePage = ($stateParams.selectedInvoiceId)?$stateParams.selectedInvoiceId:'';
+          $scope.isCreatePage = ($stateParams.id)?$stateParams.id:'';
 
           $scope.isInvoice = $state.includes('app.edit-invoice');
           if ($scope.isInvoice) {

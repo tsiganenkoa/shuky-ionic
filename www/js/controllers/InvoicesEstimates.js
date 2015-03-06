@@ -36,7 +36,7 @@ angular.module('myApp.controllers')
           };
 
           $scope.edit = function (id) {
-            $state.go($scope.editPageUrl, {'selectedInvoiceId': id}, {cache: false});
+            $state.go($scope.editPageUrl, {'id': id}, {cache: false});
           };
 
           $scope.delete = function (id) {

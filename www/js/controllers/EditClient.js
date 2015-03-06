@@ -2,22 +2,11 @@ angular.module('myApp.controllers')
 
         .controller('EditClientCtrl', function ($scope, $state, $http, $stateParams, Utils, $ionicNavBarDelegate, AppConfig, $templateCache, $rootScope) {
 
-          $scope.isCreatePage = !$stateParams.selectedClientId;
-          if ($scope.isCreatePage) {
-            $scope.selectedClientId = '';
-            $scope.pageTitle = 'Create Client';
-          } else {
-            $scope.selectedClientId = $stateParams.selectedClientId;
-            $scope.pageTitle = 'Edit Client';
-          }
-
-          $scope.isiPad = Utils.detectDevice('ipad');
+          $scope.isCreatePage = ($stateParams.id)?$stateParams.id:'';
           
           $scope.selectedClient = {};
-          console.log('selectedClient', $scope.selectedClientId);
 
           $scope.isValidForm = function(){
-            console.log($scope.clientForm);
             return $scope.clientForm.$valid;
           };
 
@@ -33,10 +22,10 @@ angular.module('myApp.controllers')
               Utils.hideIndicator();
             };
             
-            if ($scope.isCreatePage) {
-              $http.post(AppConfig.endpoint + 'clients/' + $scope.selectedClientId, $scope.selectedClient).then(callback);
+            if (!$scope.isCreatePage) {
+              $http.post(AppConfig.endpoint + 'clients/', $scope.selectedClient).then(callback);
             } else {
-              $http.put(AppConfig.endpoint + 'clients/' + $scope.selectedClientId, $scope.selectedClient).then(callback);
+              $http.put(AppConfig.endpoint + 'clients/' + $scope.isCreatePage, $scope.selectedClient).then(callback);
             }
             
           };
@@ -47,7 +36,7 @@ angular.module('myApp.controllers')
 
           $scope.loadSelectedClient = function () {
             Utils.showIndicator();
-            $http.get(AppConfig.endpoint + 'clients/' + $scope.selectedClientId)
+            $http.get(AppConfig.endpoint + 'clients/' + $scope.isCreatePage)
                     .then(function (response) {
                       var clientInfo = response.data;
                       $scope.selectedClient = clientInfo;
@@ -56,6 +45,6 @@ angular.module('myApp.controllers')
                     });
           };
 
-          if (!$scope.isCreatePage)
+          if ($scope.isCreatePage)
             $scope.loadSelectedClient();
         });

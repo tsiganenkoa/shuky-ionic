@@ -1,4 +1,4 @@
-<ion-view title="{{pageTitle}}" cache-view="false">
+<ion-view title="{{!isCreatePage?'Create Client':'Edit Client'}}" cache-view="false">
   <ion-nav-buttons side="right">
     <button class="button button-clear" ng-click="save()" ng-disabled="!isValidForm()">Done</button>
   </ion-nav-buttons>
