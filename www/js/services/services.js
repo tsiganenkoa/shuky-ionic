@@ -47,6 +47,14 @@ angular.module('myApp.services', [])
                 dataURI = dataURI.replace(/data:;?base64,/, 'data:image/jpeg;base64,');
               }
               return dataURI;
+            },
+            detectDevice: function (deviceType) {
+              //Return boolean value according to deviceType
+              var deviceInfo = window.navigator.userAgent;
+              if (deviceInfo.toLowerCase().indexOf(deviceType) >= 0)
+                return true
+              else
+                return false;
             }
           };
 
