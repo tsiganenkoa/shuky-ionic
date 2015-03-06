@@ -53,9 +53,14 @@ angular.module('myApp.controllers')
             $http.get(AppConfig.endpoint + $scope.dataUrl + $scope.isCreatePage)
                     .then(function (response) {
                       var InvoiceInfo = response.data;
+                      
+                      //Selected Invoice or Estimate Information Object.
                       $scope.selectedInvoice = InvoiceInfo;
+                      
+                      //Convert IssueDate String to valid date type.
                       $scope.selectedInvoice.IssueDate = new Date($scope.selectedInvoice.IssueDate);
-                      console.log($scope.selectedInvoice);
+                      
+                      //Line Items of Invoice or Estimate in Response.
                       $scope.docItemList = $scope.selectedInvoice.DocItems;
                       $http.get(AppConfig.endpoint + 'clients/' + InvoiceInfo.ClientId)
                               .then(function (response) {
@@ -66,7 +71,7 @@ angular.module('myApp.controllers')
                               });
                     });
           };
-
+          // Open Client list modal when click Client Name field
           $scope.editClient = function () {
             $ionicModal.fromTemplateUrl('templates/partials/select-clients.html', {
               scope: $scope
@@ -84,7 +89,8 @@ angular.module('myApp.controllers')
             $scope.options.FreeText = '';
             $scope.loadClients();
           };
-
+          
+          // Get Client List with search value.
           $scope.loadClients = function () {
             Utils.showIndicator();
             $http.get(AppConfig.endpoint + 'clients?' + $.param($scope.options))
@@ -109,7 +115,7 @@ angular.module('myApp.controllers')
                     });
 
           }
-
+          // Open Add Line Item Modal
           $scope.addLineItemModal = function () {
             $ionicModal.fromTemplateUrl('templates/partials/add-line-item.html', {
               scope: $scope
@@ -125,13 +131,13 @@ angular.module('myApp.controllers')
               $scope.docItemList.push($scope.lineitem);
             $scope.addItemModal.hide();
           }
-
+          // Swipe delete
           $scope.deleteLineItem = function (index) {
             Utils.confirm('Are you sure to delete this data.', 'Delete data', function () {
               $scope.docItemList.splice(index, 1);
             });
           }
-          
+          // If there is param, load Invoices or Estimates according to selected id
           if ($scope.isCreatePage)
             $scope.loadSelectedInvoice();
         });
