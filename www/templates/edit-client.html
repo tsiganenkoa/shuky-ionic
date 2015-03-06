@@ -1,0 +1,80 @@
+<ion-view title="{{pageTitle}}" cache-view="false">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="save()" ng-disabled="!isValidForm()">Done</button>
+  </ion-nav-buttons>
+  <ion-content padding="true" class="page page-edit-client">
+    <form name="$parent.clientForm">
+      <div class="list card is-pad">
+        <div class="item item-divider">Client Detail</div>
+        <div class="item item-body">
+          <ion-list>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Organization Name</span>
+              <input type="text" placeholder="Organization Name" ng-model="selectedClient.OrganizationName" required>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Email Address</span>
+              <input type="email" placeholder="Email Address" ng-model="selectedClient.Email" required>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Contact Name</span>
+              <input type="text" placeholder="Contact Name" ng-model="selectedClient.ContactName" required>
+            </label>
+            <label class="item item-input item-floating-label half-width-label">
+              <span class="input-label">Telephone 1</span>
+              <input type="tel" placeholder="Telephone 1" ng-model="selectedClient.Telephone1">
+            </label>
+            <label class="item item-input item-floating-label half-width-label">
+              <span class="input-label">Telephone 2</span>
+              <input type="tel" placeholder="Telephone 2" ng-model="selectedClient.Telephone2">
+            </label>
+            <label class="item item-input item-floating-label half-width-label">
+              <span class="input-label">Mobile</span>
+              <input type="tel" placeholder="Mobile" ng-model="selectedClient.Cell">
+            </label>
+            <label class="item item-input item-floating-label half-width-label">
+              <span class="input-label">Fax</span>
+              <input type="tel" placeholder="Fax" ng-model="selectedClient.Fax">
+            </label>
+          </ion-list>
+        </div>
+      </div>
+      <div class="list card is-pad">
+        <div class="item item-divider">Client Address</div>
+        <div class="item item-body">
+          <ion-list>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Address #1</span>
+              <input type="text" placeholder="Address #1" ng-model="selectedClient.Address1">
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Address #2</span>
+              <input type="text" placeholder="Address #2" ng-model="selectedClient.Address2">
+            </label>
+            <label class="item item-input item-floating-label three-width-label">
+              <span class="input-label">City</span>
+              <input type="text" placeholder="City" ng-model="selectedClient.City">
+            </label>
+            <label class="item item-input item-floating-label three-width-label">
+              <span class="input-label">State/Province</span>
+              <input type="text" placeholder="State/Province" ng-model="selectedClient.State">
+            </label>
+            <label class="item item-input item-floating-label three-width-label">
+              <span class="input-label">Postal Code</span>
+              <input type="tel" placeholder="Postal Code" ng-model="selectedClient.ZipCode">
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Website</span>
+              <input type="text" placeholder="Website" ng-model="selectedClient.Website">
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Internal Notes</span>
+              <input type="text" placeholder="Internal Notes" ng-model="selectedClient.InternalNotes">
+            </label>
+          </ion-list>
+        </div>
+      </div>
+    </form>
+
+  </ion-content>
+</ion-view>
