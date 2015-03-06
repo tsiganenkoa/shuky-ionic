@@ -1,0 +1,35 @@
+.list.card.is-pad {  
+  @include pad {
+    width: calc(49% - 10px);
+    margin:  5px 5px 5px 5px;
+    display: inline-block;
+    vertical-align: top;
+    label {
+      text-align: left;
+    }
+    .item-floating-label {
+      
+    }
+  }  
+  @include phone {
+    .item-floating-label {
+      .input-label{
+        display:none;
+      }
+    }
+    .half-width-label {
+      margin-right: 3px;
+      float: left;
+      border:none;
+      border-bottom:1px solid #ccc;
+      width: calc(50% - 6px);
+    }
+    .three-width-label{
+      margin-right: 3px;
+      float: left;
+      border:none;
+      border-bottom:1px solid #ccc;
+      width: calc(33.3% - 6px);
+    }
+  }  
+}

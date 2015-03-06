@@ -3,13 +3,16 @@
 @import "global/variables";
 @import "global/mixins";
 @import "global/icons";
-
+@import "global/responsive";
 
 body{
   color: $my-app-textcolor;
   a{
     text-decoration: none;
     color: $my-app-textcolor;
+  }
+  form {
+    text-align: center;
   }
 }
 
@@ -29,3 +32,4 @@ ng-form {
 @import "partials/sidemenu";
 @import "partials/login";
 @import "partials/clients";
+@import "partials/invoices";

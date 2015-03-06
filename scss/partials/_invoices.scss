@@ -1,0 +1,30 @@
+.page.page-invoices-estimates {
+  .invoice-left-container {
+    float: left;
+    width: 70%;
+  }
+  .invoice-right-container {
+    float: right;
+    width: 30%;
+    text-align: right;
+  }
+  .item-body{
+    .button{
+      margin-top: 10px;
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+} 
+.page.page-edit-invoice-estimate {
+  .item-body{
+    .button{
+      margin-top: 10px;
+      max-width: 100%;
+      width: 100%;
+    }
+    .ion-option-button{
+      margin-top: 0px;
+    }
+  }
+} 
