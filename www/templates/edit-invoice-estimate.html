@@ -1,0 +1,59 @@
+<ion-view title="{{!isCreatePage?'Create':'Edit'}} {{isInvoice?'Invoice':'Estimate'}}" cache-view="false">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="save()" ng-disabled="invoiceEstimateForm.$invalid">Done</button>
+  </ion-nav-buttons>
+  <ion-content padding="true" class="page page-edit-invoice-estimate">
+    <div class="list card is-pad">
+      <div class="item item-divider">Information</div>
+      <div class="item item-body">
+        <ion-list>
+          <form name="$parent.invoiceEstimateForm">
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Issue Date</span>
+              <input type="date" placeholder="Issue Date" ng-model="selectedInvoice.IssueDate" required>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Due</span>
+              <input type="number" placeholder="Due" ng-model="selectedInvoice.Due">
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Discount</span>
+              <input type="number" placeholder="Discount" ng-model="selectedInvoice.Discount">
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Shipping</span>
+              <input type="number" placeholder="Shipping" ng-model="selectedInvoice.Shipping">
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Client Name</span>
+              <input type="text" placeholder="Client Name" ng-model="selectedClient.OrganizationName" readonly ng-click = "editClient()" required>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Client Notes</span>
+              <input type="text" placeholder="Client Notes" ng-model="selectedInvoice.ClientNotes">
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">InternalNotes</span>
+              <input type="text" placeholder="InternalNotes" ng-model="selectedInvoice.InternalNotes">
+            </label>
+
+          </form>
+        </ion-list>
+
+      </div>
+    </div>
+    <div class="list card is-pad">
+      <div class="item item-divider">Document Items</div>
+      <div class="item item-body">
+        <ion-list>
+          <ion-item ng-repeat="docitem in docItemList track by $index">
+            {{docitem.ItemDescription}}
+            <ion-option-button class="button-energized ion-close ion-option-button custom-font" ng-click="deleteLineItem($index)"></ion-option-button>
+          </ion-item>
+        </ion-list>
+        <button class="button" ng-click="addLineItemModal()">Add Line Item</button>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>
