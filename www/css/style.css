@@ -153,6 +153,9 @@ body {
     color: #000000; }
   body form {
     text-align: center; }
+    body form .required-option-empty {
+      border: none;
+      border-bottom: 2px solid red; }
 
 .clear {
   clear: both; }

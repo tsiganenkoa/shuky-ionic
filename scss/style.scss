@@ -13,6 +13,10 @@ body{
   }
   form {
     text-align: center;
+    .required-option-empty {
+      border: none;
+      border-bottom: 2px solid red;
+    }
   }
 }
 

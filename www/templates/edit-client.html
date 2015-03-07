@@ -8,15 +8,15 @@
         <div class="item item-divider">Client Detail</div>
         <div class="item item-body">
           <ion-list>
-            <label class="item item-input item-floating-label">
+            <label class="item item-input item-floating-label" ng-class="{'required-option-empty':!selectedClient.OrganizationName}">
               <span class="input-label">Organization Name</span>
               <input type="text" placeholder="Organization Name" ng-model="selectedClient.OrganizationName" required>
             </label>
-            <label class="item item-input item-floating-label">
+            <label class="item item-input item-floating-label" ng-class="{'required-option-empty':!selectedClient.Email}">
               <span class="input-label">Email Address</span>
               <input type="email" placeholder="Email Address" ng-model="selectedClient.Email" required>
             </label>
-            <label class="item item-input item-floating-label">
+            <label class="item item-input item-floating-label" ng-class="{'required-option-empty':!selectedClient.ContactName}">
               <span class="input-label">Contact Name</span>
               <input type="text" placeholder="Contact Name" ng-model="selectedClient.ContactName" required>
             </label>

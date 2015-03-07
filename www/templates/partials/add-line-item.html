@@ -2,26 +2,28 @@
   <ion-header-bar class="bar bar-header bar-dark">
     <button class="button button-clear" ng-click="addItemModal.hide()">Cancel</button>
     <h1 class="title">Add New Item</h1>
-    <button class="button button-clear" ng-click="addLineItem()">Done</button>
+    <button class="button button-clear" ng-click="addLineItem()" ng-disabled="addLineItemForm.$invalid">Done</button>
   </ion-header-bar>
   <ion-content class="has-subheader page page-add-line-item">
     <ion-list>
-      <label class="item item-input">
-        <span class="input-label">Item Name</span>
-        <input type="text" placeholder="" ng-model="lineitem.ItemId">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Description</span>
-        <input type="text" placeholder="" ng-model="lineitem.ItemDescription">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Rate</span>
-        <input type="text" placeholder="" ng-model="lineitem.ItemPrice">
-      </label>
-      <label class="item item-select">
-        <span class="input-label" ng-model="lineitem.TaxId2">Tax</span>
-        <select></select>
-      </label>
+      <form name="$parent.addLineItemForm">
+        <label class="item item-input" ng-class="{'required-option-empty':!lineitem.ItemId}">
+          <span class="input-label">Item Name</span>
+          <input type="text" placeholder="" ng-model="lineitem.ItemId" required>
+        </label>
+        <label class="item item-input" ng-class="{'required-option-empty':!lineitem.ItemDescription}">
+          <span class="input-label">Description</span>
+          <input type="text" placeholder="" ng-model="lineitem.ItemDescription" required>
+        </label>
+        <label class="item item-input" ng-class="{'required-option-empty':!lineitem.ItemPrice}">
+          <span class="input-label">Rate</span>
+          <input type="number" placeholder="" ng-model="lineitem.ItemPrice" required>
+        </label>
+        <label class="item item-select">
+          <span class="input-label" ng-model="lineitem.TaxId2">Tax</span>
+          <select></select>
+        </label>
+      </form>
     </ion-list>
   </ion-content>
 </ion-view>

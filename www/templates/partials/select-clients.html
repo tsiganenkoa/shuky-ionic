@@ -1,13 +1,14 @@
 <ion-view title="Clients" hide-back-button="true" cache-view = "false">
   <ion-header-bar class="bar bar-header bar-dark">
     <h1 class="title">New Contact</h1>
+    <button class="button button-clear" ng-click="modal.hide()">Cancel</button>
   </ion-header-bar>
   <div class="bar bar-subheader bar-stable item-input-inset clients-search-bar">
     <form class="item-input-wrapper" id="clientsSearchForm">
       <i class="icon ion-ios7-search placeholder-icon"></i>
       <input type="search" placeholder="Search" ng-model="options.FreeText" dng-change="divideClients()" id="txt_clients_search">
     </form>
-    <button class="button button-clear" ng-show="options.FreeText!==''" ng-click="clearSearch()"><i class="icon ion-ios7-close-outline"></i></button>
+    <button class="button button-clear" ng-show="options.FreeText !== ''" ng-click="clearSearch()"><i class="icon ion-ios7-close-outline"></i></button>
   </div>
   <ion-content class="has-subheader page page-select-clients">
     <ion-list>

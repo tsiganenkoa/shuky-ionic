@@ -8,7 +8,7 @@
       <div class="item item-body">
         <ion-list>
           <form name="$parent.invoiceEstimateForm">
-            <label class="item item-input item-floating-label">
+            <label class="item item-input item-floating-label" ng-class="{'required-option-empty':!selectedInvoice.IssueDate}">
               <span class="input-label">Issue Date</span>
               <input type="date" placeholder="Issue Date" ng-model="selectedInvoice.IssueDate" required>
             </label>
@@ -24,7 +24,7 @@
               <span class="input-label">Shipping</span>
               <input type="number" placeholder="Shipping" ng-model="selectedInvoice.Shipping">
             </label>
-            <label class="item item-input item-floating-label">
+            <label class="item item-input item-floating-label" ng-class="{'required-option-empty':!selectedClient.OrganizationName}">
               <span class="input-label">Client Name</span>
               <input type="text" placeholder="Client Name" ng-model="selectedClient.OrganizationName" readonly ng-click = "editClient()" required>
             </label>
