@@ -5,7 +5,7 @@ angular.module('myApp', [
   'myApp.directives',
   'myApp.services',
   'myApp.controllers'
-]).run(function ($ionicPlatform) {
+]).run(function ($ionicPlatform, Utils) {
   $ionicPlatform.ready(function () {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -16,6 +16,7 @@ angular.module('myApp', [
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    
+    Utils.loadCountries();
+    Utils.loadTaxes();
   });
 });

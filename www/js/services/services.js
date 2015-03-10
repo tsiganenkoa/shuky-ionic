@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('myApp.services', [])
-        .factory('Utils', function ($ionicLoading, $ionicPopup, AppConfig) {
+        .factory('Utils', function ($ionicLoading, $ionicPopup, AppConfig, $http) {
           var UtilsSrv = {
             config: null,
+            countries:[],
+            taxes:[],
             showIndicator: function () {
               window.iL = $ionicLoading;
               console.log('SHOW INDICATOR');
@@ -53,6 +55,42 @@ angular.module('myApp.services', [])
               var deviceInfo = window.navigator.userAgent;
               if (deviceInfo.toLowerCase().indexOf(deviceType) >= 0)
                 return true
+              else
+                return false;
+            },
+            loadCountries: function () {
+              $http.get(AppConfig.endpoint + 'definitions/countries')
+                    .then(function (response) {
+                      var countries = response.data;
+                      UtilsSrv.countries = countries;
+                      return UtilsSrv.countries;
+                    });
+            },
+            getCountries: function () {
+              if(UtilsSrv.countries.length)
+                return UtilsSrv.countries;
+              else
+                return UtilsSrv.loadCountries();
+            },
+            loadTaxes: function () {
+              $http.get(AppConfig.endpoint + 'settings/taxes')
+                    .then(function (response) {
+                      var taxes = response.data;
+                      UtilsSrv.taxes = taxes;
+                      return UtilsSrv.taxes;
+                    });
+            },
+            getTaxes: function () {
+              if(UtilsSrv.taxes.length)
+                return UtilsSrv.taxes;
+              else
+                return UtilsSrv.loadTaxes();
+            },
+            getTaxById: function (taxId) {
+              if(UtilsSrv.taxes.length)
+                for (var i = 0; i < UtilsSrv.taxes.length; i++)
+                  if(taxId == UtilsSrv.taxes[i].Id)
+                    return UtilsSrv.taxes[i];
               else
                 return false;
             }

@@ -1,4 +1,9 @@
-.list.card.is-pad {  
+.list.card.is-pad {
+  .item-floating-label {
+    span{
+      text-align: left;
+    }
+    }
   @include pad {
     width: calc(49% - 10px);
     margin:  5px 5px 5px 5px;
@@ -7,14 +12,13 @@
     label {
       text-align: left;
     }
-    .item-floating-label {
-      
-    }
+    
+
   }  
   @include phone {
     .item-floating-label {
       .input-label{
-        display:none;
+        /*display:none;*/
       }
     }
     .half-width-label {
@@ -32,4 +36,59 @@
       width: calc(33.3% - 6px);
     }
   }  
+}
+
+.pad-list {
+  @include pad {
+    padding: 120px 100px;
+    .item{
+      border: none;
+      margin: 0px;
+    }
+    .item-separator{
+      border-bottom: 1px solid #aaa;
+      height: 1px;
+    }
+  }
+}
+
+.list {  
+  .invoice-left-container {
+    float: left;
+    width: 70%;
+    p{
+      margin: 2px;
+    }
+  }
+  .invoice-right-container {
+    float: right;
+    width: 30%;
+    text-align: right;
+    p{
+      margin: 2px;
+    }
+  }
+  @include phone {
+    .item-main-title{
+      font-size: $my-listitem-maintitle-fontsize-phone;
+      color: $my-listitem-maintitle-color;
+    }
+    .item-sub-title{
+      font-size: $my-listitem-subtitle-fontsize-phone;
+      color: $my-listitem-subtitle-color;
+    }
+  }
+
+  @include pad {
+    .item-main-title{
+      font-size: $my-listitem-maintitle-fontsize-pad;
+      color: $my-listitem-maintitle-color;
+      letter-spacing: 0.5px;
+    }
+    .item-sub-title{
+      font-size: $my-listitem-subtitle-fontsize-pad;
+      color: $my-listitem-subtitle-color;
+      margin-top: 8px;
+    }
+  }
 }

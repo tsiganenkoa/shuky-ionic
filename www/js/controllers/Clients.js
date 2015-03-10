@@ -9,7 +9,7 @@ angular.module('myApp.controllers')
           $scope.isMoreClients = false;
 
           $scope.options = {
-            FreeText: '', Skip: 0, Top: 20, OrderBy: 'OrganizationName'
+            FreeText: '', StatusId: 1, Skip: 0, Top: 20, OrderBy: 'OrganizationName'
           };
           $(document).on('search', '#clientsSearchForm', function () {
             $scope.options.Skip = 0;

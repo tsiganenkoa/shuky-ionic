@@ -1,22 +1,26 @@
 .page.page-invoices-estimates {
-  .invoice-left-container {
-    float: left;
-    width: 70%;
-  }
-  .invoice-right-container {
-    float: right;
-    width: 30%;
-    text-align: right;
-  }
+
   .item-body{
     .button{
       margin-top: 10px;
       max-width: 100%;
       width: 100%;
     }
+    .item-content {
+      padding: 5px;
+    }
   }
 } 
 .page.page-edit-invoice-estimate {
+  .item-divider{
+    i {
+      float: right;
+      font-size: 20px;
+    }
+    i:active {
+      color:#ccc;
+    }
+  }
   .item-body{
     .button{
       margin-top: 10px;
@@ -25,6 +29,19 @@
     }
     .ion-option-button{
       margin-top: 0px;
+      width: auto;
+    }
+    .item-content {
+      padding: 2px;
+    }
+  }
+} 
+
+.page.page-add-line-item {
+  .input-label{
+    text-align:left;
+    span {
+      color: red;
     }
   }
 } 

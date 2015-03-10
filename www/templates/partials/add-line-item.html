@@ -7,22 +7,31 @@
   <ion-content class="has-subheader page page-add-line-item">
     <ion-list>
       <form name="$parent.addLineItemForm">
-        <label class="item item-input" ng-class="{'required-option-empty':!lineitem.ItemId}">
-          <span class="input-label">Item Name</span>
+        <ion-item class="item item-input">
+          <span class="input-label">Item Name <span>*</span></span>
           <input type="text" placeholder="" ng-model="lineitem.ItemId" required>
-        </label>
-        <label class="item item-input" ng-class="{'required-option-empty':!lineitem.ItemDescription}">
+        </ion-item>
+        <ion-item class="item item-input">
           <span class="input-label">Description</span>
-          <input type="text" placeholder="" ng-model="lineitem.ItemDescription" required>
-        </label>
-        <label class="item item-input" ng-class="{'required-option-empty':!lineitem.ItemPrice}">
-          <span class="input-label">Rate</span>
+          <input type="text" placeholder="" ng-model="lineitem.ItemDescription">
+        </ion-item>
+        <ion-item class="item item-input">
+          <span class="input-label">Price <span>*</span></span>
           <input type="number" placeholder="" ng-model="lineitem.ItemPrice" required>
-        </label>
-        <label class="item item-select">
-          <span class="input-label" ng-model="lineitem.TaxId2">Tax</span>
-          <select></select>
-        </label>
+        </ion-item>
+        <ion-item class="item item-input">
+          <span class="input-label">Quantity <span>*</span></span>
+          <input type="number" placeholder="" ng-model="lineitem.ItemQuantity" required>
+        </ion-item>
+        <ion-item class="item item-select">
+          <span class="input-label">Tax1</span>
+          <select ng-options="item.Id as item.Name+' '+item.Number for item in taxes" ng-model="lineitem.TaxId1"></select>
+        </ion-item>
+        <ion-item class="item item-select">
+          <span class="input-label">Tax2</span>
+          <select ng-options="item.Id as item.Name+' '+item.Number for item in taxes" ng-model="lineitem.TaxId2"></select>
+        </ion-item>
+        <div class="item item-divider">Total : <span ng-show="setTotal()">$</span>{{setTotal() | number:2}}</div>
       </form>
     </ion-list>
   </ion-content>

@@ -4,7 +4,7 @@
   </ion-nav-buttons>
   <ion-content padding="true" class="page page-edit-invoice-estimate">
     <div class="list card is-pad">
-      <div class="item item-divider">Information</div>
+      <div class="item item-divider">Information<i class="button-dark icon ion-navicon-round" ng-click="changeOther = !changeOther"></i></div>
       <div class="item item-body">
         <ion-list>
           <form name="$parent.invoiceEstimateForm">
@@ -16,30 +16,20 @@
               <span class="input-label">Due</span>
               <input type="number" placeholder="Due" ng-model="selectedInvoice.Due">
             </label>
-            <label class="item item-input item-floating-label">
-              <span class="input-label">Discount</span>
-              <input type="number" placeholder="Discount" ng-model="selectedInvoice.Discount">
-            </label>
-            <label class="item item-input item-floating-label">
-              <span class="input-label">Shipping</span>
-              <input type="number" placeholder="Shipping" ng-model="selectedInvoice.Shipping">
-            </label>
             <label class="item item-input item-floating-label" ng-class="{'required-option-empty':!selectedClient.OrganizationName}">
               <span class="input-label">Client Name</span>
               <input type="text" placeholder="Client Name" ng-model="selectedClient.OrganizationName" readonly ng-click = "editClient()" required>
             </label>
-            <label class="item item-input item-floating-label">
-              <span class="input-label">Client Notes</span>
-              <input type="text" placeholder="Client Notes" ng-model="selectedInvoice.ClientNotes">
+            <label class="item item-input item-floating-label" ng-show="changeOther">
+              <span class="input-label">Discount</span>
+              <input type="number" placeholder="Discount" ng-model="selectedInvoice.Discount">
             </label>
-            <label class="item item-input item-floating-label">
-              <span class="input-label">InternalNotes</span>
-              <input type="text" placeholder="InternalNotes" ng-model="selectedInvoice.InternalNotes">
+            <label class="item item-input item-floating-label" ng-show="changeOther">
+              <span class="input-label">Shipping</span>
+              <input type="number" placeholder="Shipping" ng-model="selectedInvoice.Shipping">
             </label>
-
           </form>
         </ion-list>
-
       </div>
     </div>
     <div class="list card is-pad">
@@ -47,11 +37,63 @@
       <div class="item item-body">
         <ion-list>
           <ion-item ng-repeat="docitem in docItemList track by $index">
-            {{docitem.ItemDescription}}
+            <div class="invoice-left-container">
+              <p class="item-main-title">{{docitem.ItemDescription}}</p>
+              <p class="item-sub-title">#{{docitem.ItemQuantity}} units @ ${{docitem.ItemPrice}}</p>
+            </div>
+            <div class="invoice-right-container">
+              <h2>${{docitem.ItemPrice*docitem.ItemQuantity}}</h2>
+            </div>
+            <ion-option-button class="button-balanced ion-edit ion-option-button custom-font" ng-click="editLineItem($index)"></ion-option-button>
             <ion-option-button class="button-energized ion-close ion-option-button custom-font" ng-click="deleteLineItem($index)"></ion-option-button>
           </ion-item>
         </ion-list>
         <button class="button" ng-click="addLineItemModal()">Add Line Item</button>
+      </div>
+    </div>
+    <div class="list card is-pad">
+      <div class="item item-divider">
+        Notes
+        <i class="button-dark icon ion-navicon-round" ng-click="changeNoteBar = !changeNoteBar"></i>
+      </div>
+      <div class="item item-body" ng-show="changeNoteBar">
+        <ion-list>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Client Notes</span>
+            <input type="text" placeholder="Client Notes" ng-model="selectedInvoice.ClientNotes">
+          </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">InternalNotes</span>
+            <input type="text" placeholder="Internal Notes" ng-model="selectedInvoice.InternalNotes">
+          </label>
+        </ion-list>
+      </div>
+    </div>
+    <div class="list card is-pad">
+      <div class="item item-divider">Summary</div>
+      <div class="item item-body">
+        <ion-list>
+          <label class="item item-input">
+            <span class="input-label">SubTotal</span>
+            <span class="input-label">${{summaryData.subTotal | number:2}}</span>
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Taxes</span>
+            <span class="input-label">${{summaryData.Tax | number:2}}</span>
+          </label>
+          <label class="item item-input" ng-show="selectedInvoice.Discount">
+            <span class="input-label">Discount</span>
+            <span class="input-label">${{selectedInvoice.Discount | number:2}}</span>
+          </label>
+          <label class="item item-input" ng-show="selectedInvoice.Shipping">
+            <span class="input-label">Shipping</span>
+            <span class="input-label">${{selectedInvoice.Shipping | number:2}}</span>
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Totals</span>
+            <span class="input-label">${{(summaryData.Total+selectedInvoice.Shipping-selectedInvoice.Discount) | number:2}}</span>
+          </label>
+        </ion-list>
       </div>
     </div>
 

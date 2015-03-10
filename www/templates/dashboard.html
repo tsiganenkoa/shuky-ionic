@@ -2,22 +2,36 @@
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
   </ion-nav-buttons>
-  <ion-content class="page page-dashboard">
-    <div class="list">
+  <ion-content class="page page-dashboard is-pad">
+    <div class="list pad-list">
       <a class="item item-icon-left" href="#/edit-client">
-        <i class="icon ion-person"></i>
-        <h2>Create Contact</h2>
-        <p>Add customer information here.</p>
+        <i class="icon ion-ios-people"></i>
+        <p class="item-main-title">Create Contact</p>
+        <p class="item-sub-title">Add customer information here.</p>
       </a>
+      <div class="item-separator"></div>
       <a class="item item-icon-left" href="#/edit-invoice">
-        <i class="icon ion-document"></i>
-        <h2>Create Invoice</h2>
-        <p>Send invoice to your customer's inbox.</p>
+        <i class="icon ion-document-text"></i>
+        <p class="item-main-title">Create Invoice</p>
+        <p class="item-sub-title">Send invoice to your customer's inbox.</p>
       </a>
+      <div class="item-separator"></div>
       <a class="item item-icon-left" href="#/edit-estimates">
-        <i class="icon ion-document"></i>
-        <h2>Create Estimate</h2>
-        <p>Send estimates to your prospective customers.</p>
+        <i class="icon ion-android-document"></i>
+        <p class="item-main-title">Create Estimate</p>
+        <p class="item-sub-title">Send estimates to your prospective customers.</p>
+      </a>
+      <div class="item-separator"></div>
+      <a class="item item-icon-left" href="#/edit-estimates">
+        <i class="icon ion-cube"></i>
+        <p class="item-main-title">Create Item</p>
+        <p class="item-sub-title">Send estimates to your prospective customers.</p>
+      </a>
+      <div class="item-separator"></div>
+      <a class="item item-icon-left" href="#" onclick = 'window.open("http://www.billiving.com/help", "_blank", "location=yes");'>
+        <i class="icon ion-ios-help"></i>
+        <p class="item-main-title">Help</p>
+        <p class="item-sub-title">Send estimates to your prospective customers.</p>
       </a>
     </div>
   </ion-content>
